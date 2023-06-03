@@ -30,8 +30,6 @@ function createPromise(position, delay) {
 function stopDefAction(evt) {
   evt.preventDefault();
 
-  formSubmit.removeEventListener('submit', stopDefAction);
-
   let delay = Number(delayEl.value);
   const step = Number(stepEl.value);
 
