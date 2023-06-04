@@ -1,2 +1,0 @@
-const t=document.querySelectorAll("button"),e=document.body.style;function n(){setColor=setInterval((()=>{e.backgroundColor=`#${Math.floor(16777215*Math.random()).toString(16).padStart(6,0)}`}),1e3),t[0].removeEventListener("click",n)}t[0].addEventListener("click",n),t[1].addEventListener("click",(function(){clearInterval(setColor),t[0].addEventListener("click",n)}));
-//# sourceMappingURL=01-color-switcher.b3a74543.js.map
