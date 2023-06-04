@@ -38,7 +38,9 @@ function convertMs(ms) {
   // Remaining minutes
   const minutes = addLeadingZero(Math.floor(((ms % day) % hour) / minute));
   // Remaining seconds
-  const seconds = addLeadingZero(Math.floor((((ms % day) % hour) % minute) / second));
+  const seconds = addLeadingZero(
+    Math.floor((((ms % day) % hour) % minute) / second)
+  );
 
   return { days, hours, minutes, seconds };
 }
@@ -59,6 +61,8 @@ flatpickr(dateInput, options);
 
 startButton.addEventListener('click', () => {
   startButton.disabled = true;
+  dateInput.disabled = true;
+
   timer.start();
 });
 
@@ -71,8 +75,10 @@ const timer = {
 
   start() {
     this.intervalId = setInterval(() => {
-      if (localStorage.getItem(STORAGE_KEY) <= 1) {
+      if (localStorage.getItem(STORAGE_KEY) < 1000) {
         clearInterval(this.intervalId);
+        startButton.disabled = false;
+        dateInput.disabled = false;
         return;
       }
       const deltaTime = localStorage.getItem(STORAGE_KEY) - 1000;

@@ -18,6 +18,7 @@ function createPromise(position, delay) {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       const shouldResolve = Math.random() > 0.3;
+
       if (shouldResolve) {
         resolve({ position, delay });
       } else {
@@ -34,6 +35,11 @@ function stopDefAction(evt) {
   const step = Number(stepEl.value);
 
   for (let i = 1; i <= amount.value; i += 1) {
+    if (step < 0 || delay < 0 || amount.value <= 0) {
+      position = 1;
+      Notify.failure(`❌ Rejected promise ${position} in ${delay}ms`);
+      return;
+    }
     createPromise(i, delay)
       .then(({ position, delay }) => {
         Notify.success(`✅ Fulfilled promise ${position} in ${delay}ms`);
@@ -41,6 +47,7 @@ function stopDefAction(evt) {
       .catch(({ position, delay }) => {
         Notify.failure(`❌ Rejected promise ${position} in ${delay}ms`);
       });
+
     delay += step;
     position += 1;
   }

@@ -10,7 +10,12 @@ const bodyColor = document.body.style;
 buttonsEl[0].addEventListener('click', onButtonStartClick);
 buttonsEl[1].addEventListener('click', onButtonStopClick);
 
+buttonsEl[1].disabled = true;
+
 function onButtonStartClick() {
+  buttonsEl[0].disabled = true;
+  buttonsEl[1].disabled = false;
+
   setColor = setInterval(() => {
     bodyColor.backgroundColor = getRandomHexColor();
   }, 1000);
@@ -18,6 +23,9 @@ function onButtonStartClick() {
 }
 
 function onButtonStopClick() {
-    clearInterval(setColor);
-    buttonsEl[0].addEventListener('click', onButtonStartClick);
+  buttonsEl[0].disabled = false;
+  buttonsEl[1].disabled = true;
+
+  clearInterval(setColor);
+  buttonsEl[0].addEventListener('click', onButtonStartClick);
 }
