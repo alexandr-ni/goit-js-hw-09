@@ -37,7 +37,7 @@ function stopDefAction(evt) {
   for (let i = 1; i <= amount.value; i += 1) {
     if (step < 0 || delay < 0 || amount.value <= 0) {
       position = 1;
-      Notify.failure(`❌ Rejected promise ${position} in ${delay}ms`);
+      Notify.failure(`❌ Rejected promise`);
       return;
     }
     createPromise(i, delay)
