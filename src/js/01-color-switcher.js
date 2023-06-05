@@ -6,6 +6,7 @@ function getRandomHexColor() {
 
 const buttonsEl = document.querySelectorAll('button');
 const bodyColor = document.body.style;
+let setColor;
 
 buttonsEl[1].disabled = true;
 
